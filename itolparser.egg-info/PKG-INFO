@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: itolparser
+Version: 0.1
+Summary: A
+Home-page: https://github.com/boasvdp/itolparser
+Author: Boas van der Putten
+Author-email: boas.vanderputten@amsterdamumc.nl
+License: UNKNOWN
+Description: # itolparser
+        Small script to produce iTOL colorstrip metadata files from a table
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
