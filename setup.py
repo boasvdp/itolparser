@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
      name='itolparser',
-     version='0.1',
+     version='0.1.1',
      scripts=['itolparser'] ,
      author="Boas van der Putten",
      author_email="boas.vanderputten@amsterdamumc.nl",
