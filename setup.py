@@ -4,11 +4,11 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
      name='itolparser',
-     version='0.1.1',
+     version='0.1.3',
      scripts=['itolparser'] ,
      author="Boas van der Putten",
      author_email="boas.vanderputten@amsterdamumc.nl",
-     description="A",
+     description="Small script to produce iTOL colorstrip metadata files from a table",
      long_description=long_description,
      long_description_content_type="text/markdown",
      url="https://github.com/boasvdp/itolparser",
