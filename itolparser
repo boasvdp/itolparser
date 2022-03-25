@@ -75,12 +75,6 @@ for i in range(1, len(df.columns)):
   # Check how many unique values exist and define colour scheme based on number
   nr_values = len(list_vals)
 
-  # Get dict
-  a_dict = itolparser_functions.create_dicts(tmpdf, name, list_vals, CONTINUOUS, args.maxcategories, list_removevals)
-
-  # Print full iTOL output
-  itolparser_functions.printitol(name, name, id_name, a_dict, a_dict, args.outdir, args.margin, args.stripwidth, tmpdf, CONTINUOUS)
-
   # If more than 18 values (defined! see big if loop), print filtered up to j max categories
   if (nr_values > 18) & (CONTINUOUS == 0):
     a_dict_alt, list_include = itolparser_functions.create_dicts(tmpdf, name, list_vals, CONTINUOUS, args.maxcategories, list_removevals)
@@ -92,3 +86,9 @@ for i in range(1, len(df.columns)):
 
     # Print filtered iTOL output
     itolparser_functions.printitol(name, name_filtered, id_name, a_dict_alt, sub_dict, args.outdir, args.margin, args.stripwidth, tmpdf, CONTINUOUS)
+  else:
+    a_dict = itolparser_functions.create_dicts(tmpdf, name, list_vals, CONTINUOUS, args.maxcategories, list_removevals)
+
+    # Print full iTOL output
+    itolparser_functions.printitol(name, name, id_name, a_dict, a_dict, args.outdir, args.margin, args.stripwidth, tmpdf, CONTINUOUS)
+

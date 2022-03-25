@@ -27,7 +27,6 @@ def create_dicts(tmpdf, name, list_vals, CONTINUOUS, MAXCATEGORIES, list_removev
 
     return(a_dict)
   else:
-
     # if only one after removal: assign black
     if nr_values == 1:
       for i in list_vals:
@@ -58,7 +57,6 @@ def create_dicts(tmpdf, name, list_vals, CONTINUOUS, MAXCATEGORIES, list_removev
 
     # otherwise assign random colours and allow filtering
     else:
-
       # Get list of counts and select j highest keys. Remove values from list_removevals defined above
       j = MAXCATEGORIES
       list_include = tmpdf[name].value_counts().iloc[:j].index.to_list()
