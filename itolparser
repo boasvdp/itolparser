@@ -13,7 +13,7 @@ import random
 import itolparser_functions.itolparser_functions as itolparser_functions
 
 __author__= "Boas van der Putten"
-__version__= "itolparser v0.1.3"
+__version__= "itolparser v0.1.4"
 
 # Parse arguments
 parser = argparse.ArgumentParser(description='Find within and between cluster comparisons based on SNP distances and fastBAPS clustering.')

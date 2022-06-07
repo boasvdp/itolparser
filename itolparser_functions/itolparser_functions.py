@@ -16,12 +16,12 @@ def create_dicts(tmpdf, name, list_vals, CONTINUOUS, MAXCATEGORIES, list_removev
 
   # check if continuous
   if CONTINUOUS > 0:
-    MIN = min(list_vals)
-    MAX = max(list_vals)
+    MIN = float(min(list_vals))
+    MAX = float(max(list_vals))
     for i in list_vals:
-      RVAL = int(255 - (((i - MIN) / (MAX - MIN)) * 255))
-      GVAL = int(255 - (((i - MIN) / (MAX - MIN)) * 155))
-      BVAL = int(150 - (((i - MIN) / (MAX - MIN)) * 150))
+      RVAL = int(255 - (((float(i) - MIN) / (MAX - MIN)) * 255))
+      GVAL = int(255 - (((float(i) - MIN) / (MAX - MIN)) * 155))
+      BVAL = int(150 - (((float(i) - MIN) / (MAX - MIN)) * 150))
       HEX = '#%02x%02x%02x' % (RVAL, GVAL, BVAL)
       a_dict[i] = HEX
 
