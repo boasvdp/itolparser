@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 
-# Import modules
-import sys
 import colorbrewer as cb
 import pandas as pd
-import os
 import numpy as np
 import random
 from itolparser.version import __version__, __author__, __description__
 import bisect
 
-from pathlib import Path
 import logging
 
 from itolparser.args import get_args, validate_args, select_input_type
@@ -168,9 +164,6 @@ class ItolparserDiscreteColumn(ItolparserColumn):
         """Process a column of the input table"""
         colordict = {}
         for val in list_unique_values:
-            print(val)
-            print(list_unique_values.index(val))
-            print(color_palette[list_unique_values.index(val)])
             HEX = self.rgb_to_hex(color_palette[list_unique_values.index(val)])
             colordict[val] = HEX
         return colordict
@@ -178,7 +171,6 @@ class ItolparserDiscreteColumn(ItolparserColumn):
     def make_data_section(self, column_data, colordict):
         # map colordict to second column of column_data
         color_data = column_data.iloc[:, 1].map(colordict)
-        print(self.name, colordict)
         df_data = pd.concat(
             [column_data.iloc[:, 0], color_data, column_data.iloc[:, 1]], axis=1
         )
@@ -189,7 +181,6 @@ class ItolparserDiscreteColumn(ItolparserColumn):
     def process_column(self):
         # Get unique values and remove specified items
         self.list_unique_values = self.get_unique_values(self.column_data)
-        print(self.list_unique_values)
         self.list_unique_values = self.remove_na_values(
             self.list_unique_values, self.list_removevals
         )
@@ -197,8 +188,6 @@ class ItolparserDiscreteColumn(ItolparserColumn):
         self.colordict = self.build_colordict(
             self.list_unique_values, self.color_palette
         )
-        print(self.colordict)
-        print(self.printname)
         self.legend_text = self.make_legend_text(self.printname, self.colordict)
         self.data_text = self.make_data_section(self.column_data, self.colordict)
         self.write_file(self.outdir, self.printname, self.legend_text, self.data_text)
@@ -225,7 +214,6 @@ class ItolparserContinuousColumn(ItolparserColumn):
 
         color_dict = {}
         for index, val in enumerate(legend_values):
-            print(index, val)
             color_dict[str(val)] = self.rgb_to_hex(color_palette[index])
 
         return color_dict, color_palette
@@ -269,23 +257,18 @@ class ItolparserContinuousColumn(ItolparserColumn):
 
     def process_column(self):
         self.list_unique_values = self.get_unique_values(self.column_data)
-        print(self.list_unique_values)
         self.list_unique_values = self.remove_na_values(
             self.list_unique_values, self.list_removevals
         )
-        print(self.list_unique_values)
         self.colordict, self.color_palette = self.build_colordict(
             self.list_unique_values, self.palette_name
         )
-        print(self.colordict)
         self.legend_text = self.make_legend_text(self.printname, self.colordict)
-        print(self.legend_text)
         self.data_text = self.make_data_section(
             self.column_data,
             self.colordict,
             self.color_palette,
         )
-        print(self.data_text)
         self.write_file(self.outdir, self.printname, self.legend_text, self.data_text)
 
 
@@ -307,7 +290,6 @@ def main():
 
     # Read in typing/metadata table using the provided delimiter
     sample.read_input()
-    print(sample.df)
 
     # Get column name of samples
     id_name = sample.df.columns[0]
@@ -318,13 +300,11 @@ def main():
 
     # Loop over columns
     for name in data_cols:
-        print(name)
         if name not in settings_dict:
-            print(f"Skipping column {name}")
+            logging.info(f"Skipping column {name}")
             continue
 
         column_data = sample.df[[id_name, name]]
-        print(column_data)
 
         if settings_dict[name]["continuous"]:
             column_object = ItolparserContinuousColumn(
