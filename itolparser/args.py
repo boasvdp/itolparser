@@ -3,6 +3,27 @@ from itolparser.version import __version__, __author__, __description__
 from pathlib import Path
 import logging
 
+tuple_sequential_palettes = (
+    "YlGn",
+    "YlGnBu",
+    "GnBu",
+    "BuGn",
+    "PuBuGn",
+    "PuBu",
+    "BuPu",
+    "RdPu",
+    "PuRd",
+    "OrRd",
+    "YlOrRd",
+    "YlOrBr",
+    "Purples",
+    "Blues",
+    "Greens",
+    "Oranges",
+    "Reds",
+    "Greys",
+)
+
 
 def get_args():
     # Parse arguments
@@ -84,6 +105,7 @@ def get_args():
         help="Color palette to use for continuous columns",
         type=str,
         default="GnBu",
+        choices=tuple_sequential_palettes,
     )
 
     args = parser.parse_args()
