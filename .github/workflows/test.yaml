@@ -30,7 +30,7 @@ jobs:
           itolparser --version
           check_exit_code
 
-          itolparser --continuous nr_amr_genes --output tmp_output --input tests/table.tsv
+          itolparser --continuous nr_amr_genes --outdir tmp_output --input tests/table.tsv
           check_exit_code
 
           for file in correct_output/normal/*
@@ -40,7 +40,7 @@ jobs:
             check_exit_code
           done
 
-          itolparser --continuous nr_amr_genes --ignore ST serotype -o tmp_data_OrRd --palette OrRd -i tests/table.tsv
+          itolparser --continuous nr_amr_genes --ignore ST serotype --outdir tmp_data_OrRd --palette OrRd -i tests/table.tsv
           check_exit_code
 
           for file in correct_output/OrRd_palette/*
