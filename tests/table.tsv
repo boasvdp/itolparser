@@ -1,0 +1,5 @@
+sample	ST	serotype	nr_amr_genes
+sampleA	1	A	0
+sampleB	2	A	3
+sampleC	3	A	2
+sampleD	4	B	8
