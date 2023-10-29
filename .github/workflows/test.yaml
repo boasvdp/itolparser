@@ -1,0 +1,51 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  cli_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Conda environment with Micromamba
+        uses: mamba-org/provision-with-micromamba@main
+        with:
+          cache-downloads: true
+          environment-file: env.yaml
+
+      - name: Conda list
+        shell: bash -l {0}
+        run: conda list
+
+      - name: Run tests
+        shell: bash -l {0}
+        run: |          
+          set -ex
+
+          python -m pip install . --no-deps -vv
+
+          check_exit_code () { exit_code=$?; echo "exit code: $exit_code"; if [ $exit_code -ne 0 ]; then exit 1; fi; }
+
+          itolparser --version
+          check_exit_code
+
+          itolparser --continuous nr_amr_genes --output tmp_output --input tests/table.tsv
+          check_exit_code
+
+          for file in correct_output/normal/*
+          do
+            NAME=$(basename $file)
+            cmp tests/correct_output/normal/$NAME tmp_output/$NAME
+            check_exit_code
+          done
+
+          itolparser --continuous nr_amr_genes --ignore ST serotype -o tmp_data_OrRd --palette OrRd -i tests/table.tsv
+          check_exit_code
+
+          for file in correct_output/OrRd_palette/*
+          do
+            NAME=$(basename $file)
+            cmp tests/correct_output/OrRd_palette/$NAME tmp_data_OrRd/$NAME
+            check_exit_code
+          done          
