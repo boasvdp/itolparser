@@ -33,19 +33,19 @@ jobs:
           itolparser --continuous nr_amr_genes --outdir tmp_output --input tests/table.tsv
           check_exit_code
 
-          for file in correct_output/normal/*
+          for file in tests/correct_output/normal/*
           do
             NAME=$(basename $file)
             cmp tests/correct_output/normal/$NAME tmp_output/$NAME
             check_exit_code
           done
 
-          itolparser --continuous nr_amr_genes --ignore ST serotype --outdir tmp_data_OrRd --palette OrRd -i tests/table.tsv
+          itolparser --continuous nr_amr_genes --ignore ST serotype --outdir tmp_output_OrRd --palette OrRd -i tests/table.tsv
           check_exit_code
 
-          for file in correct_output/OrRd_palette/*
+          for file in tests/correct_output/OrRd_palette/*
           do
             NAME=$(basename $file)
-            cmp tests/correct_output/OrRd_palette/$NAME tmp_data_OrRd/$NAME
+            cmp tests/correct_output/OrRd_palette/$NAME tmp_output_OrRd/$NAME
             check_exit_code
           done          
