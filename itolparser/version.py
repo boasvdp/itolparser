@@ -1,5 +1,5 @@
 __package__ = "itolparser"
 __author__ = "Boas van der Putten"
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 __description__ = "Generate iTOL files from tables"
 __email__ = "boas.van.der.putten@rivm.nl"
