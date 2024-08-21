@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/boasvdp/itolparser/compare/v0.2.1...v0.2.2) (2024-08-21)
+
+
+### Bug Fixes
+
+* fix bug when col contains single unique value ([2a3479c](https://github.com/boasvdp/itolparser/commit/2a3479c743f84d142e8c5e6608d8c205cb096544))
+
 ## [0.2.1](https://github.com/boasvdp/itolparser/compare/v0.2.0...v0.2.1) (2023-10-29)
 
 
