@@ -163,9 +163,14 @@ class ItolparserDiscreteColumn(ItolparserColumn):
     def build_colordict(self, list_unique_values, color_palette):
         """Process a column of the input table"""
         colordict = {}
-        for val in list_unique_values:
-            HEX = self.rgb_to_hex(color_palette[list_unique_values.index(val)])
-            colordict[val] = HEX
+        if len(list_unique_values) == 1:
+            colordict[list_unique_values[0]] = self.rgb_to_hex(color_palette)
+        else:
+            for val in list_unique_values:
+                val_index = list_unique_values.index(val)
+                rgb_val = color_palette[val_index]
+                HEX = self.rgb_to_hex(rgb_val)
+                colordict[val] = HEX
         return colordict
 
     def make_data_section(self, column_data, colordict):
