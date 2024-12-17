@@ -59,6 +59,11 @@ def get_args():
         help="Force input parsing as .csv file",
     )
     main_args.add_argument(
+        "--xlsx",
+        action="store_true",
+        help="Force input parsing as .xlsx file",
+    )
+    main_args.add_argument(
         "-v",
         "--version",
         help="prints program version and exits",
@@ -123,6 +128,8 @@ def select_input_type(args):
         delim = "\t"
     elif args.csv:
         delim = ","
+    elif args.xlsx:
+        delim = "xlsx"
     else:
         logging.info("No delimiter specified, trying to infer from file extension")
         if args.input.suffix in [".tsv", ".txt"]:
