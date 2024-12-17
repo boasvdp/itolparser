@@ -2,6 +2,7 @@
 
 import colorbrewer as cb
 import pandas as pd
+import openpyxl
 import numpy as np
 import random
 from itolparser.version import __version__, __author__, __description__
@@ -38,7 +39,10 @@ class Itolparser:
 
     def read_input(self):
         """Read in typing/metadata table using the provided delimiter"""
-        self.df = pd.read_csv(self.input, sep=self.delim)
+        if self.delim == "xlsx":
+            self.df = pd.read_excel(self.input)
+        else:
+            self.df = pd.read_csv(self.input, sep=self.delim)
 
     # def make_output_dir(self):
     #     """Make output directory if it does not exist yet"""

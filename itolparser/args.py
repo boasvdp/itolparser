@@ -125,10 +125,12 @@ def select_input_type(args):
         delim = ","
     else:
         logging.info("No delimiter specified, trying to infer from file extension")
-        if args.input.suffix == ".tsv":
+        if args.input.suffix in [".tsv", ".txt"]:
             delim = "\t"
-        elif args.input.suffix == ".csv":
+        elif args.input.suffix in [".csv"]:
             delim = ","
+        elif args.input.suffix in [".xlsx"]:
+            delim = "xlsx"
         else:
             logging.warning(
                 "Could not infer delimiter from file extension, letting pandas.read_csv guess"

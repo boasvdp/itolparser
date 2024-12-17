@@ -15,7 +15,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/boasvdp/itolparser",
     packages=setuptools.find_packages(),
-    install_requires=["colorbrewer", "pandas", "numpy"],
+    install_requires=["colorbrewer", "pandas", "numpy", "openpyxl"],
     python_requires=">=3",
     entry_points={
         "console_scripts": [
